@@ -16,7 +16,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmStudent());
         }
     }
 }

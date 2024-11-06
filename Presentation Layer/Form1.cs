@@ -14,20 +14,52 @@ using Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer;
 
 namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 {
+
     public partial class frmStudent : Form
     {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // This code is done to access methods stored on the Logic.cs and FIleHandler.cs, in Form1.cs file
 
-        private Logic logic; // Private field to hold the object.
+        private Logic logic;
+        private FileHandler fileHandler;
 
         public frmStudent()
         {
             InitializeComponent();
-            logic = new Logic(this); // Passes the current object of fromStudent to the Logic class.
+            fileHandler = new FileHandler(this);
+            logic = new Logic(this, fileHandler);
         }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //CLASS: Student
 
-        FileHandler fileHandler = new FileHandler();
+        // This class is created to capture the student details from the groupbox so that it can be used in various other methods
+        public class Student
+        {
+            public string Name { get; set; }
+            public string StudentNumber { get; set; }
+            public int Age { get; set; }
+            public string Course { get; set; }
+
+        } // End of Student class
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHOD: GetDetails
+        public Student GetDetails()
+        {
+            string studentName = edtName.Text;
+            string studentNumber = edtNumber.Text;
+            int studentAge = Convert.ToInt32(numAge.Value);
+            string studentCourse = cmbxCourse.SelectedItem.ToString();
+
+            // A new Student object is created to allow developers to call the GetDetails method in other files
+            return new Student
+            {
+                StudentNumber = studentNumber,
+                Name = studentName,
+                Age = studentAge,
+                Course = studentCourse,
+            };
+
+        } // End of GetDetails method 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: GetRowCount
         public int GetRowCount()
@@ -65,7 +97,9 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Student student = GetDetails();
 
+            fileHandler.AddNewStudent(student.StudentNumber, student.Name, student.Age, student.Course);
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnView_Click(object sender, EventArgs e)

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 using Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer;
 using Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer;
+using static Behr_Singo_Thomas_Veldman_PRG282_Project.frmStudent;
 
 namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 {
@@ -104,7 +105,13 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnView_Click(object sender, EventArgs e)
         {
+            dtgvStudent.Columns.Clear();
 
+            List<Student> students = fileHandler.ViewAllStudents();
+
+            dtgvStudent.DataSource = students;
+
+            dtgvStudent.Refresh();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnDelete_Click(object sender, EventArgs e)

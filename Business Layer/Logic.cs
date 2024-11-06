@@ -13,17 +13,19 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer
     internal class Logic
     {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This code is done to access methods stored on the Form1.cs and FIleHandler.cs, in Logic.cs
+        // This code is done to access methods stored on the Form1.cs and FileHandler.cs, in Logic.cs
 
         private frmStudent form;
+        FileHandler fileHandler;
 
-        public Logic(frmStudent formObject)
+        public Logic(frmStudent formObject, FileHandler fileHandler)
         {
             form = formObject;
+            this.fileHandler = fileHandler;
         }
 
         // Object created to access the methods on FileHandler class
-        FileHandler fileHandler = new FileHandler();
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Generate a Summary Report
         public void GenerateSummary()

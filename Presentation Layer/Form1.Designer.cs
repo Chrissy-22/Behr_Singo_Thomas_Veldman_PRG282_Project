@@ -82,7 +82,7 @@
             this.gbxDetails.Size = new System.Drawing.Size(291, 218);
             this.gbxDetails.TabIndex = 1;
             this.gbxDetails.TabStop = false;
-            this.gbxDetails.Text = "ENTER NEW STUDENT\'S DETAILS:";
+            this.gbxDetails.Text = "ENTER STUDENT\'S DETAILS:";
             // 
             // cmbxCourse
             // 

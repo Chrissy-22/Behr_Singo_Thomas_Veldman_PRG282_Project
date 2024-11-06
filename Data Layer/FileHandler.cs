@@ -48,6 +48,43 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
 
         } // End of AddNewStudent method
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHOD: ViewAllStudents
+
+        //Loads the students' details from the students.txt file and returns a list of Student objects.
+        public List<Student> ViewAllStudents()
+        {
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "students.txt");
+
+            List<Student> students = new List<Student>();
+
+            if (File.Exists(filePath))
+            {
+                // Foreach loop that loops through the records in the textfile
+                foreach (var line in File.ReadLines(filePath))
+                {
+                    var data = line.Split(',');
+
+                    if (data.Length == 4 && int.TryParse(data[2].Trim(), out int age))
+                    {
+                        students.Add(new Student
+                        {
+                            StudentNumber = data[0].Trim(),
+                            Name = data[1].Trim(),
+                            Age = age,
+                            Course = data[3].Trim()
+                        });
+
+                    } // End of if statement
+                } // End of foreach loop
+            } // End of if statement
+            else
+            {
+                MessageBox.Show("No student file found. Please add student records first.");
+            } // End of else statement
+
+            return students;
+        } // End of ViewAllStudents method
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void WriteSummaryFile(int totalAge, float averageAge)
         {
             try

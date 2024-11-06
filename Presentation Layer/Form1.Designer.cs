@@ -59,7 +59,7 @@
             this.lblHeading.AutoSize = true;
             this.lblHeading.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblHeading.Location = new System.Drawing.Point(141, 9);
+            this.lblHeading.Location = new System.Drawing.Point(244, 9);
             this.lblHeading.Name = "lblHeading";
             this.lblHeading.Size = new System.Drawing.Size(508, 46);
             this.lblHeading.TabIndex = 0;
@@ -167,7 +167,7 @@
             this.dtgvStudent.Name = "dtgvStudent";
             this.dtgvStudent.RowHeadersWidth = 51;
             this.dtgvStudent.RowTemplate.Height = 24;
-            this.dtgvStudent.Size = new System.Drawing.Size(477, 287);
+            this.dtgvStudent.Size = new System.Drawing.Size(730, 287);
             this.dtgvStudent.TabIndex = 2;
             // 
             // StudentNumber
@@ -212,7 +212,7 @@
             this.btnView.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Location = new System.Drawing.Point(311, 360);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(477, 44);
+            this.btnView.Size = new System.Drawing.Size(730, 44);
             this.btnView.TabIndex = 4;
             this.btnView.Text = "View All Students";
             this.btnView.UseVisualStyleBackColor = false;
@@ -224,7 +224,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(311, 410);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(237, 44);
+            this.btnDelete.Size = new System.Drawing.Size(362, 44);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete A Student";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -234,9 +234,9 @@
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnUpdate.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(554, 410);
+            this.btnUpdate.Location = new System.Drawing.Point(703, 410);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(234, 44);
+            this.btnUpdate.Size = new System.Drawing.Size(338, 44);
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update Student\'s Information";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -258,7 +258,7 @@
             // 
             this.lblResults.AutoSize = true;
             this.lblResults.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResults.Location = new System.Drawing.Point(0, 425);
+            this.lblResults.Location = new System.Drawing.Point(10, 425);
             this.lblResults.Name = "lblResults";
             this.lblResults.Size = new System.Drawing.Size(259, 16);
             this.lblResults.TabIndex = 8;
@@ -268,7 +268,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 473);
+            this.ClientSize = new System.Drawing.Size(1053, 473);
             this.Controls.Add(this.lblResults);
             this.Controls.Add(this.btnSummary);
             this.Controls.Add(this.btnUpdate);

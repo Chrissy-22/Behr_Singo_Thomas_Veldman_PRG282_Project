@@ -30,14 +30,14 @@
         {
             this.lblHeading = new System.Windows.Forms.Label();
             this.gbxDetails = new System.Windows.Forms.GroupBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblNumber = new System.Windows.Forms.Label();
-            this.lblAge = new System.Windows.Forms.Label();
-            this.lblCourse = new System.Windows.Forms.Label();
-            this.edtName = new System.Windows.Forms.TextBox();
-            this.edtNumber = new System.Windows.Forms.TextBox();
-            this.numAge = new System.Windows.Forms.NumericUpDown();
             this.cmbxCourse = new System.Windows.Forms.ComboBox();
+            this.numAge = new System.Windows.Forms.NumericUpDown();
+            this.edtNumber = new System.Windows.Forms.TextBox();
+            this.edtName = new System.Windows.Forms.TextBox();
+            this.lblCourse = new System.Windows.Forms.Label();
+            this.lblAge = new System.Windows.Forms.Label();
+            this.lblNumber = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.dtgvStudent = new System.Windows.Forms.DataGridView();
             this.StudentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +61,7 @@
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.lblHeading.Location = new System.Drawing.Point(141, 9);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(525, 48);
+            this.lblHeading.Size = new System.Drawing.Size(508, 46);
             this.lblHeading.TabIndex = 0;
             this.lblHeading.Text = "Managing Student Records";
             // 
@@ -84,64 +84,6 @@
             this.gbxDetails.TabStop = false;
             this.gbxDetails.Text = "ENTER NEW STUDENT\'S DETAILS:";
             // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(6, 34);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(53, 22);
-            this.lblName.TabIndex = 0;
-            this.lblName.Text = "Name:";
-            // 
-            // lblNumber
-            // 
-            this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(6, 80);
-            this.lblNumber.Name = "lblNumber";
-            this.lblNumber.Size = new System.Drawing.Size(127, 22);
-            this.lblNumber.TabIndex = 1;
-            this.lblNumber.Text = "Student Number:";
-            // 
-            // lblAge
-            // 
-            this.lblAge.AutoSize = true;
-            this.lblAge.Location = new System.Drawing.Point(6, 128);
-            this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(42, 22);
-            this.lblAge.TabIndex = 2;
-            this.lblAge.Text = "Age:";
-            // 
-            // lblCourse
-            // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(6, 177);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(65, 22);
-            this.lblCourse.TabIndex = 3;
-            this.lblCourse.Text = "Course:";
-            // 
-            // edtName
-            // 
-            this.edtName.Location = new System.Drawing.Point(136, 34);
-            this.edtName.Name = "edtName";
-            this.edtName.Size = new System.Drawing.Size(149, 27);
-            this.edtName.TabIndex = 4;
-            // 
-            // edtNumber
-            // 
-            this.edtNumber.Location = new System.Drawing.Point(136, 80);
-            this.edtNumber.Name = "edtNumber";
-            this.edtNumber.Size = new System.Drawing.Size(149, 27);
-            this.edtNumber.TabIndex = 5;
-            // 
-            // numAge
-            // 
-            this.numAge.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numAge.Location = new System.Drawing.Point(136, 128);
-            this.numAge.Name = "numAge";
-            this.numAge.Size = new System.Drawing.Size(149, 27);
-            this.numAge.TabIndex = 6;
-            // 
             // cmbxCourse
             // 
             this.cmbxCourse.FormattingEnabled = true;
@@ -153,6 +95,64 @@
             this.cmbxCourse.Name = "cmbxCourse";
             this.cmbxCourse.Size = new System.Drawing.Size(149, 30);
             this.cmbxCourse.TabIndex = 7;
+            // 
+            // numAge
+            // 
+            this.numAge.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numAge.Location = new System.Drawing.Point(136, 128);
+            this.numAge.Name = "numAge";
+            this.numAge.Size = new System.Drawing.Size(149, 27);
+            this.numAge.TabIndex = 6;
+            // 
+            // edtNumber
+            // 
+            this.edtNumber.Location = new System.Drawing.Point(136, 80);
+            this.edtNumber.Name = "edtNumber";
+            this.edtNumber.Size = new System.Drawing.Size(149, 27);
+            this.edtNumber.TabIndex = 5;
+            // 
+            // edtName
+            // 
+            this.edtName.Location = new System.Drawing.Point(136, 34);
+            this.edtName.Name = "edtName";
+            this.edtName.Size = new System.Drawing.Size(149, 27);
+            this.edtName.TabIndex = 4;
+            // 
+            // lblCourse
+            // 
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Location = new System.Drawing.Point(6, 177);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(65, 22);
+            this.lblCourse.TabIndex = 3;
+            this.lblCourse.Text = "Course:";
+            // 
+            // lblAge
+            // 
+            this.lblAge.AutoSize = true;
+            this.lblAge.Location = new System.Drawing.Point(6, 128);
+            this.lblAge.Name = "lblAge";
+            this.lblAge.Size = new System.Drawing.Size(42, 22);
+            this.lblAge.TabIndex = 2;
+            this.lblAge.Text = "Age:";
+            // 
+            // lblNumber
+            // 
+            this.lblNumber.AutoSize = true;
+            this.lblNumber.Location = new System.Drawing.Point(6, 80);
+            this.lblNumber.Name = "lblNumber";
+            this.lblNumber.Size = new System.Drawing.Size(127, 22);
+            this.lblNumber.TabIndex = 1;
+            this.lblNumber.Text = "Student Number:";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(6, 34);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(53, 22);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Name:";
             // 
             // dtgvStudent
             // 
@@ -257,10 +257,10 @@
             // lblResults
             // 
             this.lblResults.AutoSize = true;
-            this.lblResults.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResults.Location = new System.Drawing.Point(12, 425);
+            this.lblResults.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResults.Location = new System.Drawing.Point(0, 425);
             this.lblResults.Name = "lblResults";
-            this.lblResults.Size = new System.Drawing.Size(287, 16);
+            this.lblResults.Size = new System.Drawing.Size(259, 16);
             this.lblResults.TabIndex = 8;
             this.lblResults.Text = "The results of the summary will appear here";
             // 

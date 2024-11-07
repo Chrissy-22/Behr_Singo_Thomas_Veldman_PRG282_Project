@@ -7,79 +7,58 @@ using System.Windows.Forms;
 using System.IO;
 
 using Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer;
+using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer
 {
     internal class Logic
     {
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void btnUpdate_Click(object sender, EventArgs e)
+        public void Update(Students student)
         {
-            // Step 1: Retrieve the selected student from the DataGridView
-            if (dtgvStudent.SelectedRows.Count > 0)
+            string query = $"UPDATE Students SET StudentNumber = '{student.StudentNumber}', " +
+                $" Name = '{student.Name}', StudentAge= '{student.Age}' " +
+                $"Where CourceName = '{student.Cource}'";
+            string ErrorCheck = $"SELECT StudentID FROM Students WHERE StudentID = {student.StudentID}";
+
+            SqlConnection con = new SqlConnection(Conn);
+            try
             {
-                // Get the selected row
-                DataGridViewRow selectedRow = dtgvStudent.SelectedRows[0];
+                con.Open();
+                MessageBox.Show("Connected");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlCommand check = new SqlCommand(ErrorCheck, con);
 
-                // Step 2: Populate the form fields with the selected student's data
-                string studentNumber = selectedRow.Cells[0].Value.ToString();
-                string studentName = selectedRow.Cells[1].Value.ToString();
-                int studentAge = Convert.ToInt32(selectedRow.Cells[2].Value);
-                string studentCourse = selectedRow.Cells[3].Value.ToString();
+            object result = check.ExecuteScalar();
 
-                // Pre-fill the form controls with the selected student's data
-                edtName.Text = studentName;
-                edtNumber.Text = studentNumber;
-                numAge.Value = studentAge;
-                cmbxCourse.SelectedItem = studentCourse;
-
-                // After filling the form fields, now allow the user to make changes and click "Update" again
-                // to save the updated details.
-
-                // Step 3: Validate the updated data
-                Student updatedStudent = GetDetails();  // Get updated details from the form
-
-                // Basic validation: Ensure that all fields are filled correctly
-                if (string.IsNullOrWhiteSpace(updatedStudent.Name) ||
-                    string.IsNullOrWhiteSpace(updatedStudent.StudentNumber) ||
-                    updatedStudent.Age <= 0 ||
-                    string.IsNullOrWhiteSpace(updatedStudent.Course))
-                {
-                    MessageBox.Show("Please ensure all fields are filled out correctly.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Step 4: Update the student in the data source (students.txt)
-                bool success = fileHandler.UpdateStudent(updatedStudent.StudentNumber, updatedStudent.Name, updatedStudent.Age, updatedStudent.Course);
-
-                if (success)
-                {
-                    // Step 5: Refresh the DataGridView to reflect the updated data
-                    List<Student> students = fileHandler.ViewAllStudents(); // Reload all students
-                    dtgvStudent.DataSource = students;  // Update the DataGridView's data source
-                    dtgvStudent.Refresh();  // Refresh the DataGridView to show updated information
-
-                    // Optionally, you can clear the form fields after the update
-                    edtName.Clear();
-                    edtNumber.Clear();
-                    numAge.Value = numAge.Minimum;
-                    cmbxCourse.SelectedIndex = -1;
-
-                    MessageBox.Show("Student record updated successfully.", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("An error occurred while updating the student record. Please try again.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            if (Convert.ToInt32(result) == student.StudentID)
+            {
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Updated");
             }
             else
             {
-                MessageBox.Show("Please select a student from the list to update.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Student doesn't exist");
             }
-        }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            private void btnUpdate_Click(object sender, EventArgs e)
+            {
+                int StudentNumber = int.Parse(txtStudentNumber.Text);
+                string Name = txtName.Text;
+                string Age = txtAge.Text;
+                string Course = txtCourseName.Text;
+                Students student = new Students(StudentNumber, Name, Age, Course);
+                handler.Update(student);
+            }
 
-    } // End of Logic class
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        } // End of Logic class
 }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 using Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer;
 using Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer;
+using static Behr_Singo_Thomas_Veldman_PRG282_Project.frmStudent;
 
 namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 {

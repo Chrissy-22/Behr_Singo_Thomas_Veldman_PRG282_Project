@@ -24,6 +24,8 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
         {
             form = formObject;
         }
+
+        
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         //METHOD: AddNewStudent
         public void AddNewStudent(string number, string name, int age, string course)
@@ -38,6 +40,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                 {
                     writer.WriteLine($"{number}, {name}, {age}, {course}");
                 }
+
 
                 MessageBox.Show("Student details saved successfully to text file. The file can be found in your Documents folder.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } // End of try block
@@ -72,6 +75,10 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                         }
                     }
                     MessageBox.Show("Student has been deleted from texfile.");
+                }
+                else
+                {
+                    MessageBox.Show("Student does not exists!");
                 }
 
             }

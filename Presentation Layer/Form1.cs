@@ -67,9 +67,12 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 
         } // End of GetDetails method 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        
-        
+        public bool StudentExists(Student student, List<Student> list)
+        {
+            return list.Any(studentList => studentList.StudentNumber == student.StudentNumber);
+        }
+
+
         // METHOD: GetRowCount
         public int GetRowCount()
         {
@@ -107,8 +110,14 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Student student = GetDetails();
-
-            fileHandler.AddNewStudent(student.StudentNumber, student.Name, student.Age, student.Course);
+            if (StudentExists(student, fileHandler.ViewAllStudents())){
+                MessageBox.Show("Student already exists. Please re-enter student details!");
+            }
+            else
+            {
+                fileHandler.AddNewStudent(student.StudentNumber, student.Name, student.Age, student.Course);
+            }
+           
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnView_Click(object sender, EventArgs e)
@@ -124,8 +133,17 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Student student=GetDetails();
-            fileHandler.DeleteStudent(student.StudentNumber, student.Name, student.Age, student.Course);
+            Student student = GetDetails();
+            if (StudentExists(student, fileHandler.ViewAllStudents()))
+            {
+                fileHandler.DeleteStudent(student.StudentNumber, student.Name, student.Age, student.Course);
+            }
+            else
+            {
+                MessageBox.Show("Unable to delete a student that does not exist!");
+            }
+            
+            
 
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -17,6 +17,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
     {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // This code is done to access methods stored on the Form1.cs and Logic.cs, in  FileHandler.cs
+        
         List<Student> students = new List<Student>();
         private frmStudent form;
 
@@ -25,7 +26,6 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
             form = formObject;
         }
 
-        
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         //METHOD: AddNewStudent
         public void AddNewStudent(string number, string name, int age, string course)
@@ -42,7 +42,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                 }
 
 
-                MessageBox.Show("Student details saved successfully to text file. The file can be found in your Documents folder.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Student details saved successfully to text file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } // End of try block
 
             catch (Exception ex)
@@ -176,7 +176,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                 using (TextWriter writer = new StreamWriter(filePath)) // TextWriter to write the results into the "summary.txt" textfile 
                 {
                     writer.WriteLine($"Total Age: {totalAge}, Average Age: {averageAge}");
-                    MessageBox.Show("Results successfully written to the text file. Summary can be found in your Documents folder.");
+                    MessageBox.Show("Results successfully written to the text file.");
 
                 } // End of TextWriter
 

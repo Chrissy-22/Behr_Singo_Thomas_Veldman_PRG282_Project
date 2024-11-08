@@ -49,22 +49,60 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 
         } // End of Student class
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHOD: ValidateInputs
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(edtName.Text))
+            {
+                MessageBox.Show("Please enter a valid name.");
+                edtName.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(edtNumber.Text))
+            {
+                MessageBox.Show("Please enter a valid student number.");
+                edtNumber.Focus();
+                return false;
+            }
+            if (cmbxCourse.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a course.");
+                cmbxCourse.Focus();
+                return false;
+            }
+            if (numAge.Value <= 0)
+            {
+                MessageBox.Show("Please enter a valid age greater than zero.");
+                numAge.Focus();
+                return false;
+            }
+            return true;
+        } // End of ValidateInputs method
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: GetDetails
         public Student GetDetails()
         {
-            string studentName = edtName.Text;
-            string studentNumber = edtNumber.Text;
-            int studentAge = Convert.ToInt32(numAge.Value);
-            string studentCourse = cmbxCourse.SelectedItem.ToString();
-
-            // A new Student object is created to allow developers to call the GetDetails method in other files
-            return new Student
+            if (!ValidateInputs())
             {
-                StudentNumber = studentNumber,
-                Name = studentName,
-                Age = studentAge,
-                Course = studentCourse,
-            };
+                return null;
+            } // End of else statement
+            else
+            {
+                string studentName = edtName.Text;
+                string studentNumber = edtNumber.Text;
+                int studentAge = Convert.ToInt32(numAge.Value);
+                string studentCourse = cmbxCourse.SelectedItem.ToString();
+
+                // A new Student object is created to allow developers to call the GetDetails method in other files
+                return new Student
+                {
+                    StudentNumber = studentNumber,
+                    Name = studentName,
+                    Age = studentAge,
+                    Course = studentCourse,
+                };
+            } // End of if statement
 
         } // End of GetDetails method 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +157,12 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             Student student = GetDetails();
+
+            if (student == null) //Checks to see if the GetDetails method is null. If it does, a student cannot be added
+                return;
+
             if (StudentExists(student, fileHandler.ViewAllStudents())){
                 MessageBox.Show("Student already exists. Please re-enter student details!");
             }
@@ -139,6 +182,10 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         private void btnDelete_Click(object sender, EventArgs e)
         {
             Student student = GetDetails();
+
+            if (student == null) //Checks to see if the GetDetails method is null. If it does, a student cannot be deleted
+                return;
+
             if (StudentExists(student, fileHandler.ViewAllStudents()))
             {
                 fileHandler.DeleteStudent(student.StudentNumber, student.Name, student.Age, student.Course);
@@ -155,6 +202,10 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Student student = GetDetails();
+
+            if (student == null) //Checks to see if the GetDetails method is null. If it does, a student cannot be updated
+                return;
+
             List<Student> studentsUpdate = new List<Student>();   
             if (dtgvStudent.SelectedRows.Count > 0)
             {

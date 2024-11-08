@@ -21,10 +21,9 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer
         public Logic(frmStudent formObject, FileHandler fileHandler)
         {
             form = formObject;
-            this.fileHandler = fileHandler;
+            this.fileHandler = fileHandler; 
         }
-
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Generate a Summary Report
         public void GenerateSummary()
         {

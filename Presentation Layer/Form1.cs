@@ -28,8 +28,9 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         public frmStudent()
         {
             InitializeComponent();
-            fileHandler = new FileHandler(this);
-            logic = new Logic(this, fileHandler);
+            fileHandler = new FileHandler(this); // fileHandler object beloning to the FileHandler class
+            logic = new Logic(this, fileHandler); // logic object beloning to the Logic class
+
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         //CLASS: Student
@@ -53,6 +54,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 
         private bool ValidateInputs()
         {
+            //Checks to see if the textboxes, combobox or NumericUpAndDown are empty.
             if (string.IsNullOrWhiteSpace(edtName.Text))
             {
                 MessageBox.Show("Please enter a valid name.");
@@ -77,7 +79,8 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
                 numAge.Focus();
                 return false;
             }
-            return true;
+            return true; // If they are not empty, the method will return true.
+
         } // End of ValidateInputs method
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: GetDetails
@@ -106,11 +109,15 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 
         } // End of GetDetails method 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //METHOD: StudentExists
+
+        // This method checks to see if a student already exists in the student.txt file.
         public bool StudentExists(Student student, List<Student> list)
         {
             return list.Any(studentList => studentList.StudentNumber == student.StudentNumber);
-        }
-
+        } // End of StudentExists method
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHOD: DisplayView
         public void DisplayView()
         {
             dtgvStudent.Columns.Clear();
@@ -120,15 +127,18 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
             dtgvStudent.DataSource = students;
 
             dtgvStudent.Refresh();
-        }
+        } // End of DisplayView method
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: GetRowCount
         public int GetRowCount()
         {
             return dtgvStudent.Rows.Count;
 
-        } // End of GetRowCount method
+        } // End of DisplayView method
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: GetTotalAge
+        
+        // This method calculates the total age of all the students displayed in the DataGridView
         public int GetTotalAge()
         {
             int totalAge = 0;
@@ -183,7 +193,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         {
             Student student = GetDetails();
 
-            if (student == null) //Checks to see if the GetDetails method is null. If it does, a student cannot be deleted
+            if (student == null) //Checks to see if the GetDetails method is null. If it is, a student cannot be deleted
                 return;
 
             if (StudentExists(student, fileHandler.ViewAllStudents()))
@@ -191,11 +201,11 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
                 fileHandler.DeleteStudent(student.StudentNumber, student.Name, student.Age, student.Course);
 
                 DisplayView();
-            }
+            }  // End of if statement
             else
             {
                 MessageBox.Show("Unable to delete a student that does not exist!");
-            }
+            } // End of else statement
             
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,7 +213,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         {
             Student student = GetDetails();
 
-            if (student == null) //Checks to see if the GetDetails method is null. If it does, a student cannot be updated
+            if (student == null) //Checks to see if the GetDetails method is null. If it is, a student cannot be updated
                 return;
 
             List<Student> studentsUpdate = new List<Student>();   
@@ -213,15 +223,17 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
                 dtgvStudent.Refresh();
                 
                 DisplayView();
-
-            }
+            } // End of if statement
             else
             {
                 MessageBox.Show("Please select a record to update!");
-            }
+            } // End of else statement
 
         }
-
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHOD: dtgvStudent_SelectionChanged
+        
+        // Checks to see if the selected record in the DataGridView has changed. If if did, the change record's details (student name, number etc) is displayed in the input boxes.
         private void dtgvStudent_SelectionChanged(object sender, EventArgs e)
         {
             if (dtgvStudent.SelectedRows.Count > 0)
@@ -233,7 +245,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
                 cmbxCourse.SelectedItem= selectedStudent.Course;
 
             }
-        }
+        } // End of dtgvStudent_SelectionChanged method
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnSummary_Click(object sender, EventArgs e)
         {

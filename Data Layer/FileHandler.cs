@@ -25,7 +25,6 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
         {
             form = formObject;
         }
-
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         //METHOD: AddNewStudent
         public void AddNewStudent(string number, string name, int age, string course)
@@ -34,26 +33,25 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
             try
             {
                 
-                string filePath = ("students.txt");
+                string filePath = ("students.txt"); // The students.txt are stored in the project files' bin folder
 
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
-                    writer.WriteLine($"{number}, {name}, {age}, {course}");
+                    writer.WriteLine($"{number}, {name}, {age}, {course}"); // Writes the new student's details to the texfile
                 }
-
 
                 MessageBox.Show("Student details saved successfully to text file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } // End of try block
 
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while saving student details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while saving student details: {ex.Message}");
             } // End of catch block
 
         } // End of AddNewStudent method
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         //METHOD: DeleteStudent
+
         public void DeleteStudent(string number,string name,int age,string course)
         {
             try
@@ -67,28 +65,32 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                 if (studentToDelete != null)
                 {
                     tempStudent.Remove(studentToDelete);
+
                     using (StreamWriter writer = new StreamWriter(filePath)) //wriet updated list back into textfile
                     {
                         foreach (var student in tempStudent)
                         {
                             writer.WriteLine(student.GetStudentString());
-                        }
-                    }
+                        } // End of foreach loop
+
+                    } // End of StreamWriter
+
                     MessageBox.Show("Student has been deleted from texfile.");
-                }
+
+                } // End of if statement
                 else
                 {
                     MessageBox.Show("Student does not exists!");
-                }
+                } // End of else statement
 
-            }
+            } // End of try block
+
             catch(Exception ex)
             {
-                MessageBox.Show($"An error occurred while deleting student details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                MessageBox.Show($"An error occurred while deleting student details: {ex.Message}");
+            } // End of catch block
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         //METHOD: UpdateStudent
         public void UpdateStudent(string number,string name, int age,string course)
         {
@@ -109,26 +111,29 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                         foreach (var student in tempStudents)
                         {
                             writer.WriteLine(student.GetStudentString());
-                        }
-                    }
+                        } // End of foreach loop
+
+                    } // End of StreamWriter
 
                     MessageBox.Show("Student record has been updated successfully!");
 
-                }
+                } // End of try block
                 else
                 {
                     MessageBox.Show("Student not found.");
-                }
-            }catch (Exception e)
+                } // End of else statement
+
+            } // End of try block
+
+            catch (Exception e)
             {
-                MessageBox.Show($"An error occurred while updating student details: {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
-        }
+                MessageBox.Show($"An error occurred while updating student details: {e.Message}");
+            } // End of catch block
 
-
+        } // End if UpdateStudent method
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: ViewAllStudents
+
         //Loads the students' details from the students.txt file and returns a list of Student objects.
         public List<Student> ViewAllStudents()
         {

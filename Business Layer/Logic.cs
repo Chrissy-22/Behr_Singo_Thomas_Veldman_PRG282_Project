@@ -17,6 +17,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer
 
         private frmStudent form;
         FileHandler fileHandler;
+       // List<string> studentList = new List<string>();
 
         public Logic(frmStudent formObject, FileHandler fileHandler)
         {
@@ -24,6 +25,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer
             this.fileHandler = fileHandler;
         }
 
+        
         // Object created to access the methods on FileHandler class
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////

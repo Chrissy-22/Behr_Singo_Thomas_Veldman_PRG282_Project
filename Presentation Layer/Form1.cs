@@ -41,6 +41,11 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
             public int Age { get; set; }
             public string Course { get; set; }
 
+            public string GetStudentString()
+            {
+                return StudentNumber + "," + Name + "," + Age+","+Course;
+        }
+
         } // End of Student class
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: GetDetails
@@ -62,6 +67,9 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 
         } // End of GetDetails method 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        
         // METHOD: GetRowCount
         public int GetRowCount()
         {
@@ -116,6 +124,8 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            Student student=GetDetails();
+            fileHandler.DeleteStudent(student.StudentNumber, student.Name, student.Age, student.Course);
 
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////

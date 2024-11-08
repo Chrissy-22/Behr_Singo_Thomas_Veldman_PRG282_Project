@@ -17,7 +17,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
     {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // This code is done to access methods stored on the Form1.cs and Logic.cs, in  FileHandler.cs
-
+        List<Student> students = new List<Student>();
         private frmStudent form;
 
         public FileHandler(frmStudent formObject)
@@ -28,10 +28,11 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
         //METHOD: AddNewStudent
         public void AddNewStudent(string number, string name, int age, string course)
         {
+
             try
             {
-                // Define the file path in the user's Documents folder
-                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "students.txt");
+                
+                string filePath = ("students.txt");
 
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
@@ -47,15 +48,48 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
             } // End of catch block
 
         } // End of AddNewStudent method
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //METHOD: DeleteStudent
+        public void DeleteStudent(string number,string name,int age,string course)
+        {
+            try
+            {
+                
+                string filePath = ("students.txt");
+                List<Student> tempStudent = ViewAllStudents(); //create a temp list for deletion
+
+                var studentToDelete = tempStudent.FirstOrDefault(studentList => studentList.StudentNumber == number);  //find the student the user want to delete
+               
+                if (studentToDelete != null)
+                {
+                    tempStudent.Remove(studentToDelete);
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        foreach (var student in tempStudent)
+                        {
+                            writer.WriteLine(student.GetStudentString());
+                        }
+                    }
+                    MessageBox.Show("Student has been deleted from texfile.");
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"An error occurred while deleting student details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHOD: ViewAllStudents
-
         //Loads the students' details from the students.txt file and returns a list of Student objects.
         public List<Student> ViewAllStudents()
         {
-            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "students.txt");
+            string filePath = ("students.txt");
 
-            List<Student> students = new List<Student>();
+            List<Student> Viewstudents = new List<Student>();
 
             if (File.Exists(filePath))
             {
@@ -66,7 +100,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
 
                     if (data.Length == 4 && int.TryParse(data[2].Trim(), out int age))
                     {
-                        students.Add(new Student
+                        Viewstudents.Add(new Student
                         {
                             StudentNumber = data[0].Trim(),
                             Name = data[1].Trim(),
@@ -82,7 +116,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                 MessageBox.Show("No student file found. Please add student records first.");
             } // End of else statement
 
-            return students;
+            return Viewstudents;
         } // End of ViewAllStudents method
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void WriteSummaryFile(int totalAge, float averageAge)
@@ -91,7 +125,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
             {
 
                 // The summary.txt will be created and saved on the user's MyDocuments folder
-                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "summary.txt");
+                string filePath = ( "summary.txt");
 
                 // Write the total number of students and the average age to the summary textfile
                 using (TextWriter writer = new StreamWriter(filePath)) // TextWriter to write the results into the "summary.txt" textfile 

@@ -67,7 +67,7 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
                 if (studentToDelete != null)
                 {
                     tempStudent.Remove(studentToDelete);
-                    using (StreamWriter writer = new StreamWriter(filePath))
+                    using (StreamWriter writer = new StreamWriter(filePath)) //wriet updated list back into textfile
                     {
                         foreach (var student in tempStudent)
                         {
@@ -86,6 +86,44 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer
             {
                 MessageBox.Show($"An error occurred while deleting student details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //METHOD: UpdateStudent
+        public void UpdateStudent(string number,string name, int age,string course)
+        {
+            try
+            {
+                List<Student> tempStudents = ViewAllStudents();
+                string filePath = ("students.txt");
+                var studentToUpdate = tempStudents.FirstOrDefault(list => list.StudentNumber == number);
+
+                if (studentToUpdate != null)
+                {
+                    studentToUpdate.Name = name;
+                    studentToUpdate.Age = age;
+                    studentToUpdate.Course = course;
+
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        foreach (var student in tempStudents)
+                        {
+                            writer.WriteLine(student.GetStudentString());
+                        }
+                    }
+
+                    MessageBox.Show("Student record has been updated successfully!");
+
+                }
+                else
+                {
+                    MessageBox.Show("Student not found.");
+                }
+            }catch (Exception e)
+            {
+                MessageBox.Show($"An error occurred while updating student details: {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
 

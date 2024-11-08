@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Behr_Singo_Thomas_Veldman_PRG282_Project.Business_Layer;
 using Behr_Singo_Thomas_Veldman_PRG282_Project.Data_Layer;
 using static Behr_Singo_Thomas_Veldman_PRG282_Project.frmStudent;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Behr_Singo_Thomas_Veldman_PRG282_Project
 {
@@ -72,7 +73,16 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
             return list.Any(studentList => studentList.StudentNumber == student.StudentNumber);
         }
 
+        public void DisplayView()
+        {
+            dtgvStudent.Columns.Clear();
 
+            List<Student> students = fileHandler.ViewAllStudents();
+
+            dtgvStudent.DataSource = students;
+
+            dtgvStudent.Refresh();
+        }
         // METHOD: GetRowCount
         public int GetRowCount()
         {
@@ -116,19 +126,14 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
             else
             {
                 fileHandler.AddNewStudent(student.StudentNumber, student.Name, student.Age, student.Course);
+                DisplayView();
             }
            
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnView_Click(object sender, EventArgs e)
         {
-            dtgvStudent.Columns.Clear();
-
-            List<Student> students = fileHandler.ViewAllStudents();
-
-            dtgvStudent.DataSource = students;
-
-            dtgvStudent.Refresh();
+            DisplayView();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnDelete_Click(object sender, EventArgs e)
@@ -137,19 +142,46 @@ namespace Behr_Singo_Thomas_Veldman_PRG282_Project
             if (StudentExists(student, fileHandler.ViewAllStudents()))
             {
                 fileHandler.DeleteStudent(student.StudentNumber, student.Name, student.Age, student.Course);
+
+                DisplayView();
             }
             else
             {
                 MessageBox.Show("Unable to delete a student that does not exist!");
             }
             
-            
-
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            Student student = GetDetails();
+            List<Student> studentsUpdate = new List<Student>();   
+            if (dtgvStudent.SelectedRows.Count > 0)
+            {
+                fileHandler.UpdateStudent(student.StudentNumber, student.Name, student.Age, student.Course);
+                dtgvStudent.Refresh();
+                
+                DisplayView();
 
+            }
+            else
+            {
+                MessageBox.Show("Please select a record to update!");
+            }
+
+        }
+
+        private void dtgvStudent_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dtgvStudent.SelectedRows.Count > 0)
+            {
+                var selectedStudent = (Student)dtgvStudent.SelectedRows[0].DataBoundItem;
+                edtName.Text = selectedStudent.Name.ToString();
+                edtNumber.Text = selectedStudent.StudentNumber;
+                numAge.Value = selectedStudent.Age;
+                cmbxCourse.SelectedItem= selectedStudent.Course;
+
+            }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnSummary_Click(object sender, EventArgs e)
